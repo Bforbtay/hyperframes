@@ -170,9 +170,9 @@ describe("psnrAtFrames()", () => {
 
   it("writes its stats file under a temp dir whose path holds filtergraph syntax", () => {
     const savedTmp = process.env.TMPDIR;
-    process.env.TMPDIR = join(workDir, "tmp:with\\backslash");
-    mkdirSync(process.env.TMPDIR, { recursive: true });
     try {
+      process.env.TMPDIR = join(workDir, "tmp:with\\backslash, [o'brien];");
+      mkdirSync(process.env.TMPDIR, { recursive: true });
       expect(psnrAtFrames(referenceVideo, degradedVideo, [0, 59]).size).toBe(2);
     } finally {
       if (savedTmp === undefined) delete process.env.TMPDIR;
